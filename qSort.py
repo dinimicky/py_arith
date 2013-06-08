@@ -23,7 +23,9 @@ def qsort(List=[]):
        
 
 
-
+print Seq
 print qsort(Seq)
+# print LargeSeq
+# print qsort(LargeSeq)
        
   
