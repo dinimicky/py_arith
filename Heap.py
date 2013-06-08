@@ -184,6 +184,7 @@ class maxPriorityQueue(maxHeap):
 
 
 def test():
+    print "========================================="
     A=minHeap([5,4,3,2,1])
     A.build_min_heap()
     A.sort()
@@ -219,6 +220,7 @@ def test():
     print A.heap_extract_max()
     print A.getList()
     print A.List
+    print "========================================="
    
 
 test()
