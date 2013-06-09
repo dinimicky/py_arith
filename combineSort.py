@@ -38,6 +38,6 @@ def do_combineSort(ListsOfList=[]):
 print combine2SortedLists([1 ,2 ,3 ,4 ], [1 ,6 ,7 ,8 ])
 print combineSort([6 ,5 ,4 ,3 ,2 ,1 ])
 
-Seq=range(1,100)+range(300,400)+range(200,300)
+Seq=range(1000,1，-2)+range(3000,4000)+range(2000,3000)
 Seq.reverse()
 print combineSort(Seq)
