@@ -57,17 +57,18 @@ def mergeSort(unSortedList):
     if len(unSortedList) <= 1:
         return unSortedList
     
-    Stack = []
+    Queue = []
     for v in unSortedList:
-        Stack.append([v])
+        Queue.append([v])
         
     while True:
-        if len(Stack) == 1:
+        if len(Queue) == 1:
             return Stack[0]
         
-        List1 = Stack.pop(0)
-        List2 = Stack.pop(0)
-        Stack.append(merge2List(List1, List2))
+        List1 = Queue.pop(0)
+        List2 = Queue.pop(0)
+        Queue.append(merge2List(List1, List2))
+        
 print combine2SortedLists([1 ,2 ,3 ,4 ], [1 ,6 ,7 ,8 ])
 print combineSort([6 ,5 ,4 ,3 ,2 ,1 ])
 
