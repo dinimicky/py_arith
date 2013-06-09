@@ -63,16 +63,8 @@ def qSort2(List):
     
       
 print Seq
-<<<<<<< Upstream, based on origin/master
 print qSort(Seq)
 print qSort2(Seq)
 print len(LargeSeq)
 print qSort2(LargeSeq)
 
-
-  
-=======
-print qsort(Seq)
-# print LargeSeq
-# print qsort(LargeSeq)
->>>>>>> dc4c77e get new qSort file
