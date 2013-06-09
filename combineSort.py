@@ -35,9 +35,44 @@ def do_combineSort(ListsOfList=[]):
         Result.append(ListsOfList[- 1])
     return do_combineSort(Result)
 
+def merge2List(SortedList1 = [], SortedList2 = []):
+    Result = []
+    while True:
+        if SortedList1 == []:
+            return Result+SortedList2
+        
+        if SortedList2 == []:
+            return Result+SortedList1
+        
+        v1 = SortedList1[0]
+        v2 = SortedList2[0]
+        if v1 > v2:
+            Result.append(v2)
+            SortedList2.pop(0)
+        else:
+            Result.append(v1)
+            SortedList1.pop(0)
+
+def mergeSort(unSortedList):
+    if len(unSortedList) <= 1:
+        return unSortedList
+    
+    Stack = []
+    for v in unSortedList:
+        Stack.append([v])
+        
+    while True:
+        if len(Stack) == 1:
+            return Stack[0]
+        
+        List1 = Stack.pop(0)
+        List2 = Stack.pop(0)
+        Stack.append(merge2List(List1, List2))
 print combine2SortedLists([1 ,2 ,3 ,4 ], [1 ,6 ,7 ,8 ])
 print combineSort([6 ,5 ,4 ,3 ,2 ,1 ])
 
+print merge2List([1 ,2 ,3 ,4 ], [1 ,6 ,7 ,8 ])
+print mergeSort([6 ,5 ,4 ,3 ,2 ,1 ])
 Seq=range(1000,1,-2)+range(3000,4000)+range(2000,3000)
 Seq.reverse()
-print combineSort(Seq)
+print mergeSort(Seq) 
