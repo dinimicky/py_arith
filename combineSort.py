@@ -63,7 +63,7 @@ def mergeSort(unSortedList):
         
     while True:
         if len(Queue) == 1:
-            return Stack[0]
+            return Queue[0]
         
         List1 = Queue.pop(0)
         List2 = Queue.pop(0)
