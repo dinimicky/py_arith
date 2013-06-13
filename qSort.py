@@ -59,8 +59,6 @@ def qSort2(List):
                 Result.append(Top)
                 
     return Result
-            
-    
       
 print Seq
 print qSort(Seq)
