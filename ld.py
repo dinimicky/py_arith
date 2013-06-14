@@ -5,9 +5,6 @@ Created on 2013-4-2
 
 Create Levenshtein distance algorithm.
 '''
-def try():
-    pass
-
 def ld(strS, strT):
     if "" == strS:
         return len(strT)
