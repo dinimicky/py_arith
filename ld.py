@@ -23,23 +23,23 @@ def ld(strS, strT):
                ld(strS[0 : -1], strT[0 : -1]) + cost)
 
 def ld_wf(strS, strT):
-    lenS = len(strS) + 1
-    lenT = len(strT) + 1
+    lenS = len(strS)
+    lenT = len(strT)
     
-    d = [float('-infinity')] * lenS *lenT
+    d = [[float('-infinity') for j in range(lenS+1)] for i in range(lenT+1)]
             
-    for i in xrange(lenS):
-        d[i] = i
+    for i in xrange(lenS+1):
+        d[0][i] = i
         
-    for j in xrange(lenT):
-        d[lenS*j] = j
+    for j in xrange(lenT+1):
+        d[j][0] = j
     
-    for i in xrange(1, lenS):
-        for j in xrange(1, lenT):
+    for j in xrange(1, lenT+1):
+        for i in xrange(1, lenS+1):
             cost = 0 if strS[i-1] == strT[j-1] else 1
-            d[j*lenS + i] = min(d[(j-1) * lenS + i]+1, d[j*lenS + i-1]+1, d[(j-1)*lenS + i-1]+cost)
+            d[j][i] = min(d[j-1][i]+1, d[j][i-1]+1, d[j-1][i-1]+cost)
         
-    return d[lenT*lenS-1]
+    return d[lenT][lenS], d
 
 def reverse_ld(strS, strT):
     if "" == strS:
@@ -119,8 +119,8 @@ if __name__ == '__main__' :
     print sum(t1.repeat(10, 1))/10
     t1 = Timer("ld_wf(\"kittenabcda\", \"sitnabcdab\")", "from __main__ import ld_wf")
     print sum(t1.repeat(10, 1))/10
-    t1 = Timer("ld_wf(\"kittenaf4wefifsdififadfefadasorgyeruiyuifhbcdab\", \"sitnabcdabdafdafefeadafdfdasfefdfdasfewfewaf\")", "from __main__ import ld_wf")
-    print sum(t1.repeat(10, 1))/10
+    t1 = Timer("ld_wf(\"kittenaf4wefifsdififadfefadasorgyeruifdafeawefadsfdgfgafeafefadfasdfdafdfafyuifhbcdab\", \"sitnabcdabdafdafefeadafdfdasfefdfdasfewfewafdfdddddddddddddddddddadfeeasdfdasdfdafdafdasffa\")", "from __main__ import ld_wf")
+    print sum(t1.repeat(100, 1))/100
     t1 = Timer("distance(\"kittenaf4wefifsdififadfefadasorgyeruifdafeawefadsfdgfgafeafefadfasdfdafdfafyuifhbcdab\", \"sitnabcdabdafdafefeadafdfdasfefdfdasfewfewafdfdddddddddddddddddddadfeeasdfdasdfdafdafdasffa\")", "from __main__ import distance")
-    print sum(t1.repeat(10, 1))/10 
+    print sum(t1.repeat(100, 1))/100 
     
