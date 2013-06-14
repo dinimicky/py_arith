@@ -22,6 +22,22 @@ def ld(strS, strT):
                ld(strS, strT[0 : -1]) + 1,
                ld(strS[0 : -1], strT[0 : -1]) + cost)
 
+def reverse_ld(strS, strT):
+    if "" == strS:
+        return len(strT)
+    
+    if "" == strT:
+        return len(strS)
+    
+    if strS[0] == strT[0]:
+        cost = 0
+    else:
+        cost = 1
+        
+    return min(reverse_ld(strS[1 : ], strT) + 1, 
+               reverse_ld(strS, strT[1 : ]) + 1,
+               reverse_ld(strS[1 : ], strT[1 : ]) + cost)  
+               
 def ld_wf(strS, strT):
     lenS = len(strS)
     lenT = len(strT)
@@ -40,22 +56,6 @@ def ld_wf(strS, strT):
             d[j][i] = min(d[j-1][i]+1, d[j][i-1]+1, d[j-1][i-1]+cost)
         
     return d[lenT][lenS], d
-
-def reverse_ld(strS, strT):
-    if "" == strS:
-        return len(strT)
-    
-    if "" == strT:
-        return len(strS)
-    
-    if strS[0] == strT[0]:
-        cost = 0
-    else:
-        cost = 1
-        
-    return min(reverse_ld(strS[1 : ], strT) + 1, 
-               reverse_ld(strS, strT[1 : ]) + 1,
-               reverse_ld(strS[1 : ], strT[1 : ]) + cost)    
 
 def distance(a,b):
     "Calculates the Levenshtein distance between a and b."
