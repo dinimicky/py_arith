@@ -137,7 +137,4 @@ def evaluateRunTime():
         print sum(t1.repeat(10, 1))/10
     
 if __name__ == '__main__' :
-    evaluatePerformance()
-   
-
-        
+    evaluatePerformance()        
