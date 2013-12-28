@@ -1,4 +1,9 @@
 '''
+Created on 2013-12-28
+
+@author: ezonghu
+'''
+'''
 Created on 2013-12-5
 
 @author: ezonghu
@@ -8,79 +13,48 @@ SDStr =  ["005000600080701040700060003090205060008040900060109080500090002040308
           "003279000020501009000080003000060500690003000005000000000000064700600080060920007",
           "142000387003040201080132005090000106000520704000004000608200009020000000001070000",
           "041020000000000007080005200610080000000010460000490050006000000437009106102000090",
-          "000000100096200800800000600100082003000140060760050000600400901004020000950001000"] 
-class Position(object):
-    def __init__(self, *Pos):
-        if len(Pos) == 1:
-            self.pos = Pos[0]
-            self.x = self.pos % 9
-            self.y = self.pos // 9 
-        elif len(Pos) == 2:
-            self.x = Pos[0]
-            self.y = Pos[1]
-            self.pos = self.x + self.y * 9
-        else:
-            raise TypeError("only accept the number of the arguments <=2")
-        self.areaX = self.x // 3
-        self.areaY = self.y // 3
-        self.area = self.areaX + self.areaY * 3
-
-class Area(object):
-    def __init__(self, ShuduList, *Pos):
-        if len(Pos) == 1:
-            self.areaPos = Pos[0]
-            self.areaX = self.areaPos % 3
-            self.areaY = self.areaPos // 3 
-        elif len(Pos) == 2:
-            self.areaX = Pos[0]
-            self.areaY = Pos[1]
-            self.areaPos = self.areaX + self.areaY * 3
-        else:
-            raise TypeError("only accept the number of the arguments <=2")    
-        
-        self.area = set()
-        self.areaStart = (self.areaX*3, self.areaY*3)
-        self.areaStop = (self.areaX*3+2, self.areaY*3+2)
-        for Row in range(self.areaY*3, (self.areaY+1)*3):
-            for Col in range(self.areaX*3, (self.areaX+1)*3):
-                p = Position(Col, Row)
-                if ShuduList[p.pos] != 0:
-                    self.area.add(ShuduList[p.pos])
-class Column(object):
-    def __init__(self, ShuduList, Col):
-        self.column = set()
-        for i in range(9):
-            p = Position(Col, i)
-            if ShuduList[p.pos] != 0:
-                self.column.add(ShuduList[p.pos])
-    
-class Row(object):
-    def __init__(self, ShuduList, R):
-        self.row = set()
-        for i in range(9):
-            p = Position(i, R)
-            if ShuduList[p.pos] != 0:
-                self.row.add(ShuduList[p.pos])
-                
+          "000000100096200800800000600100082003000140060760050000600400901004020000950001000"]                 
 class Shudu(object):
     defaultRange = set(range(1,10))
+    defaultPositions = [(i % 9, i //9)for i in xrange(81)]
+    
     def __init__(self, SDL):
         self.sdList = [int(i) for i in SDL]
         
     def getColumn(self, C):
-        return Column(self.sdList, C)
+        ColSet = set()
+        for i in xrange(9):
+            element = self.sdList[i*9+C]
+            if 0 != element:
+                ColSet.add(element)
+        return ColSet
     
     def getRow(self, R):
-        return Row(self.sdList, R)
+        RowSet = set()
+        for i in xrange(9):
+            element = self.sdList[R*9+i]
+            if 0 != element:
+                RowSet.add(element)
+        return RowSet
     
-    def getArea(self, A):
-        return Area(self.sdList, A)
+    def getArea(self, X, Y):
+        AreaSet = set()
+        X1 = X // 3 * 3
+        X2 = (X // 3+1) * 3
+        Y1 = Y // 3 * 3
+        Y2 = (Y // 3 + 1) * 3
+        for i in xrange(Y1, Y2):
+            for j in xrange(X1, X2):
+                element = self.sdList[i * 9 + j]
+                if 0 != element:
+                    AreaSet.add(element)
+        return AreaSet
     
     def exclusion(self, P):
-        pos = Position(P)
-        r_s = self.getRow(pos.y).row
-        c_s = self.getColumn(pos.x).column
-        a_s = self.getArea(pos.area).area
+        (posX, posY) = self.defaultPositions[P]
+        r_s = self.getRow(posY)
+        c_s = self.getColumn(posX)
+        a_s = self.getArea(posX, posY)
         tmp = self.defaultRange - (r_s|c_s|a_s)
         return tmp
 
@@ -163,6 +137,7 @@ def evaluateRunTime():
         print sum(t1.repeat(10, 1))/10
     
 if __name__ == '__main__' :
-    evaluatePerformance()     
+    evaluatePerformance()
+   
 
         
