@@ -163,8 +163,6 @@ def evaluateRunTime():
         print sum(t1.repeat(10, 1))/10
     print "=================================="
     for SDL in SDStr:
-        import sudoku
-        sudoku.solve(SDL)
         SDL.replace("0", ".")
         print SDL
         t1 = Timer("solve(\"%s\")" % SDL, "from sudoku import solve")
