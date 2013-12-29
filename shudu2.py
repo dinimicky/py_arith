@@ -127,14 +127,18 @@ class Shudu(object):
 def evaluatePerformance():
     import cProfile
     global SDStr
-    cProfile.run("Shudu(\"%s\").scanSDL()" % SDStr[1])        
+    cProfile.run("Shudu(\"%s\").scanSDL()" % SDStr[-1])
+    t=Shudu(SDStr[-1])
+    t.scanSDL()
+    for i in range(0,81,9):
+        print t.sdList[i:i+9]        
            
 def evaluateRunTime():
     global SDStr
     from timeit import Timer
     for SDL in SDStr:     
         print SDL
-        t1 = Timer("print Shudu(\"%s\").scanSDL() == 0" % SDL, "from __main__ import Shudu")
+        t1 = Timer("Shudu(\"%s\").scanSDL()" % SDL, "from __main__ import Shudu")
         print sum(t1.repeat(10, 1))/10
     
 if __name__ == '__main__' :
