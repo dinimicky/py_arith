@@ -66,20 +66,12 @@ class Shudu(object):
         setDefaultSets(self.defaultRowsSet, self.defaultRows)
                 
         
-    def getColumn(self, C):
-        return self.defaultColsSet[C]
-    
-    def getRow(self, R):
-        return self.defaultRowsSet[R]
-    
-    def getArea(self, area):
-        return self.defaultAreasSet[area]
     
     def exclusion(self, P):
         (posX, posY, area) = self.defaultPositions[P]
-        r_s = self.getRow(posY)
-        c_s = self.getColumn(posX)
-        a_s = self.getArea(area)
+        r_s = self.defaultRowsSet[posY]
+        c_s = self.defaultColsSet[posX]
+        a_s = self.defaultAreasSet[area]
         tmp = self.defaultRange - (r_s|c_s|a_s)
         return tmp
 
@@ -101,7 +93,7 @@ class Shudu(object):
                     self.sdList[i] = v
                     X, Y, A = self.defaultPositions[i]
                     self.defaultColsSet[X].add(v)
-                    self.defaultColsSet[Y].add(v)
+                    self.defaultRowsSet[Y].add(v)
                     self.defaultAreasSet[A].add(v)
                     changeFlag = True
             
