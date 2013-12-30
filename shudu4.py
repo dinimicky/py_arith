@@ -44,11 +44,6 @@ class Shudu(object):
                         
                 self.defaultAreas.append(tmp)
         self.sdList = [int(i) for i in SDL]
-        
-        self.ZeroIndexes = []
-        for i in xrange(81):
-            if 0 == self.sdList[i]:
-                self.ZeroIndexes.append(i)
                 
         self.defaultColsSet = []
         self.defaultRowsSet = []
