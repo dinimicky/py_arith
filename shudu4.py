@@ -152,7 +152,7 @@ class Shudu(object):
 
 import sudoku
 def solve(SDL):
-    sudoku.solve(SDL)
+    sudoku.display(sudoku.solve(SDL))
                             
 def evaluatePerformance():
     import cProfile
