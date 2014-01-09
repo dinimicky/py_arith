@@ -184,4 +184,4 @@ def evaluateRunTime():
 if __name__ == '__main__' :
     evaluatePerformance()
     evaluateRunTime()
-    sudoku.display(sudoku.parse_grid("800000000003600000070090200050007000000045700000100030001000068008500010090000400"))        
+    sudoku.display(sudoku.solve("800000000003600000070090200050007000000045700000100030001000068008500010090000400"))        
