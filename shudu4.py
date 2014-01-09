@@ -152,20 +152,20 @@ class Shudu(object):
 
 import sudoku
 def solve(SDL):
-    sudoku.display(sudoku.parse_grid(SDL))
+    sudoku.display(sudoku.solve(SDL))
 
                             
 def evaluatePerformance():
     import cProfile
     global SDStr
-    cProfile.run("Shudu(\"%s\").scanSDL()" % SDStr[-1])        
-    t=Shudu(SDStr[-1])
+    cProfile.run("Shudu(\"%s\").scanSDL()" % SDStr[1])        
+    t=Shudu(SDStr[1])
     t.scanSDL()
     for i in range(0,81,9):
         print t.sdList[i:i+9]
     
       
-    cProfile.run("solve(\"%s\")" % SDStr[-1])       
+    cProfile.run("solve(\"%s\")" % SDStr[1])       
                    
 def evaluateRunTime():
     global SDStr
