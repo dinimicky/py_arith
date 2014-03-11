@@ -3,7 +3,7 @@ Created on 2014-3-11
 
 @author: ezonghu
 '''
-fp = open('A-large-practice.in')
+fp = open('A-small-practice.in')
 
 first_line = True
 CaseNum = 0
@@ -25,7 +25,7 @@ for line in fp:
         Vector1.sort()
         continue
     if CaseLine == 2:
-        CaseLine = 0
+        CaseLine += 1
         Vector2 = [int(i) for i in line.split()]
         Vector2.sort(reverse=True)
         Sum = 0

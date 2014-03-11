@@ -30,12 +30,11 @@ for line in fp:
         ItemNum = int(line)
         continue
     if CaseLine == 2:
-        CaseLine += 1
+        CaseLine = 0
         Items = [int(i) for i in line.split()]
         for i in xrange(ItemNum-1):
             Rest = Credit - Items[i]
             if Rest in Items[i+1:]:
                 print "Case #%d: %d %d" % (CaseItem, i+1, Items[i+1:].index(Rest)+i+2)
-                CaseLine = 0
                 break
         continue 
