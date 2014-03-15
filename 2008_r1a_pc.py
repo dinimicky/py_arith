@@ -10,8 +10,7 @@ fp=open(fn)
 
 CaseNum = int(fp.readline())
 def multi(M1,M2):
-    print M1,M2
-    return [[sum(map(lambda x:x[0]*x[1], zip(i,j))) for j in zip(*M2)]for i in M1]
+    return [[sum(map(lambda x:x[0]*x[1] % 10000, zip(i,j))) for j in zip(*M2)]for i in M1]
 
 def fast_exp(A, n):
     if n == 1:
