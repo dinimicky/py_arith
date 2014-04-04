@@ -17,24 +17,6 @@ def analysisHex(H):
             bits.append(-1)
     return bits
 
-def setSquares(rid, cid, Bark, Squares):
-    if rid == 0 and Bark[rid][cid] != 0:
-        Squares[rid][cid]= 1
-        return
-    if cid == 0 and Bark[rid][cid] != 0:
-        Squares[rid][cid]= 1
-        return
-   
-    if (Bark[rid][cid] * Bark[rid-1][cid-1] == 1 and
-        Bark[rid][cid] * Bark[rid][cid-1] == -1 and
-        Bark[rid][cid] * Bark[rid-1][cid]) == -1 :
-        Squares[rid][cid] = 1 + min( Squares[rid-1][cid-1],
-                                      Squares[rid-1][cid],
-                                      Squares[rid][cid-1] )
-    elif Bark[rid][cid] == 0:
-        Squares[rid][cid] = 0
-    else:
-        Squares[rid][cid] = 1    
 def Squares(Bark):
     Rows = len(Bark)
     squares = []
@@ -46,7 +28,23 @@ def Squares(Bark):
     for rid in xrange(Rows):
         r = Bark[rid]
         for cid in xrange(len(r)):
-            setSquares(rid, cid, Bark, squares)
+            if rid == 0 and Bark[rid][cid] != 0:
+                squares[rid][cid]= 1
+                continue
+            if cid == 0 and Bark[rid][cid] != 0:
+                squares[rid][cid]= 1
+                continue
+           
+            if (Bark[rid][cid] * Bark[rid-1][cid-1] == 1 and
+                Bark[rid][cid] * Bark[rid][cid-1] == -1 and
+                Bark[rid][cid] * Bark[rid-1][cid]) == -1 :
+                squares[rid][cid] = 1 + min( squares[rid-1][cid-1],
+                                              squares[rid-1][cid],
+                                              squares[rid][cid-1] )
+            elif Bark[rid][cid] == 0:
+                squares[rid][cid] = 0
+            else:
+                squares[rid][cid] = 1
     return squares
 
 def getLargestSquares(squares):
@@ -79,30 +77,17 @@ def getLargestSquares(squares):
             
     return max_size, OkSquares
         
-def updateRowsAndSquares(size, OkSquares, squares, rows):
-    for rid, cid in OkSquares:
+def updateRows(size, squares, rows):
+    for rid, cid in squares:
         for r in xrange(rid-size+1, rid+1):
             for c in xrange(cid-size+1, cid+1):
                 rows[r][c]=0
-                squares[r][c]=0
-                
-    for rid, cid in OkSquares:
-        for r in xrange(rid-size+1, min(rid+1, len(rows))):
-            for c in xrange(cid+1, min(cid+1+size, len(rows[0]))):
-                setSquares(r,c,rows,squares)   
-                
-    for rid, cid in OkSquares:
-        for r in xrange(rid+1, min(rid+1+size, len(rows))):
-            for c in xrange(cid-size+1, min(cid+1+size, len(rows[0]))):
-                setSquares(r,c,rows,squares)    
 #    printRows(rows)            
-    return rows,squares        
+    return rows        
 def printRows(rows):
     for r in rows:
         print r
-
-import time
-print time.time()                                      
+                                       
 f = open('C-large-practice.in')
 first_line = f.readline()
 Cases = int(first_line)
@@ -125,7 +110,7 @@ for l in f:
             break
 
     res = []
-    sqs = Squares(rows)
+
     def checkRows(rows):
         for r in rows:
             for c in r:
@@ -133,9 +118,9 @@ for l in f:
                     return True
         return False
     while sum([sz*sz*num for sz, num in res]) != total_grid:
-        s, OkSqs = getLargestSquares(sqs)
-        rows, sqs = updateRowsAndSquares(s,OkSqs, sqs, rows)
-        res.append([s, len(OkSqs)])
+        s, sqs = getLargestSquares(Squares(rows))
+        updateRows(s,sqs, rows)
+        res.append([s, len(sqs)])
 
     print 'Case #%d: %d' % (CaseNo, len(res))
     
@@ -145,4 +130,3 @@ for l in f:
         break
 
 f.close()    
-print time.time()
