@@ -3,10 +3,6 @@ Created on 2014-3-22
 
 @author: ezonghu
 '''
-
-
-
-
 def analysisHex(H):
     filters = [8,4,2,1]
     bits = []
@@ -46,6 +42,15 @@ def Squares(Bark):
             else:
                 squares[rid][cid] = 1
     return squares
+def checkSquares(max_size, Squares, s_rid, s_cid):
+    for rid, cid in Squares:
+        deltar=abs(s_rid-rid)
+        deltac=abs(s_cid-cid)
+        if deltar>=max_size or deltac>=max_size:
+            continue
+        else:
+            return False
+    return True
 
 def getLargestSquares(squares):
     sizes = {}
@@ -62,15 +67,7 @@ def getLargestSquares(squares):
     max_squares = sizes[max_size]
 #    print max_squares
     OkSquares = []
-    def checkSquares(size, Squares, s_rid, s_cid):
-        for rid, cid in Squares:
-            deltar=abs(s_rid-rid)
-            deltac=abs(s_cid-cid)
-            if deltar>=max_size or deltac>=max_size:
-                continue
-            else:
-                return False
-        return True
+
     for rid,cid in max_squares:
         if checkSquares(max_size, OkSquares, rid, cid):
             OkSquares.append([rid,cid])
@@ -117,7 +114,8 @@ for l in f:
                 if c !=0:
                     return True
         return False
-    while sum([sz*sz*num for sz, num in res]) != total_grid:
+    while sum([sz*sz*num for sz, num in res]) < total_grid:
+        
         s, sqs = getLargestSquares(Squares(rows))
         updateRows(s,sqs, rows)
         res.append([s, len(sqs)])
