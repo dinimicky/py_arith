@@ -46,8 +46,7 @@ def solve(N):
 
 f=open('C:\Users\ezonghu\Downloads\C-large-practice.in')
 
-import time
-print time.time() 
+
 first_line = f.readline()
 Cases = int(first_line)
 CaseId = 0
@@ -61,7 +60,6 @@ for l in f:
         break
 f.close()
       
-print time.time()
     
         
             
