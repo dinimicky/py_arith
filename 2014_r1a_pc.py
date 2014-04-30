@@ -23,12 +23,24 @@ def bad(N):
         a[k], a[p] = a[p], a[k]
     return N,a
 
+def checkLarger(a):
+    counter = 0
+    for k,v in enumerate(a):
+        if k < v:
+            counter += 1
+    return counter
 def solve(N,a):
     return 'BAD' if sum(i>a[i] for i in range(N)) < 484 else 'GOOD'
 def test():
-    for _i in range(1000):
-        print "GOOD" == solve(*good(1000))
-        print "BAD" == solve(*bad(1000))
+    G = []
+    B = []
+    for _i in range(10000):
+        _N,g = good(1000)
+        _N,b = bad(1000)
+        G.append(checkLarger(g))
+        B.append(checkLarger(b))
+        
+    print sum(G)/len(G), sum(B)/len(B)
 def process():
     fn="C:\Users\ezonghu\Downloads\C-small-practice"
     fi=open(fn+'.in')
@@ -51,5 +63,5 @@ def process():
     fo.close()
 
     
-process()
-# test()
+#process()
+test()
