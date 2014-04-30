@@ -3,10 +3,32 @@ Created on 2014-4-26
 
 @author: ezonghu
 '''
+import random
+def good(N):
+    a=[0]*N
+    for i in range(N):
+        a[i]=i
+        
+    for k in range(N):
+        p=random.randint(k,N-1)
+        a[k], a[p] = a[p], a[k]
+    return N,a
+def bad(N):
+    a=[0]*N
+    for i in range(N):
+        a[i]=i
+        
+    for k in range(N):
+        p=random.randint(0,N-1)
+        a[k], a[p] = a[p], a[k]
+    return N,a
 
 def solve(N,a):
-    return 'GOOD' if sum((a[i]+N-i-1)%N for i in range(N)) > 485000 else 'BAD'
-
+    return 'BAD' if sum(i>a[i] for i in range(N)) < 484 else 'GOOD'
+def test():
+    for _i in range(1000):
+        print "GOOD" == solve(*good(1000))
+        print "BAD" == solve(*bad(1000))
 def process():
     fn="C:\Users\ezonghu\Downloads\C-small-practice"
     fi=open(fn+'.in')
@@ -30,6 +52,4 @@ def process():
 
     
 process()
-
-# for i in range(1000,10000,1000):
-#     print stat(i)
+# test()
