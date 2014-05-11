@@ -12,8 +12,8 @@ def Position(row, col):
 
 def checkColumn(Queens, row, col):
     r=row
-    while r>= 0:
-        r-= 1
+    while r >= 0:
+        r -= 1
         if r>= 0:
             if Position(r, col) in Queens:
                 return False

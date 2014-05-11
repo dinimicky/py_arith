@@ -12,11 +12,19 @@ def solve2(A,B,K):
         for a in xrange(b, A):
             if (a & b) < K:
                 res += 1
-                if a < B and b < A and a !=b :
+                if a < B and b < A and a != b :
                     res += 1
                 
     return res
-    
+
+def solve(A,B):
+    res = []
+    for a in range(A):
+        for b in range(B):
+            if (a & b) == 0:
+                res.append((a,b))
+    return res
+                
 
 def process():
     fn="C:/Users/ezonghu/Downloads/B-large-practice"
@@ -37,4 +45,5 @@ def process():
     fi.close()
     fo.close()
     
-process()
+# process()
+print solve2(3,4,1)
