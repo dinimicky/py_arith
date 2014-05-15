@@ -12,7 +12,6 @@ def bubbleSort(L):
     
     return L
 
-print bubbleSort(TL)
 
 def insertSort(L):
     for j in range(1, len(L)):
@@ -24,7 +23,6 @@ def insertSort(L):
             L[i] = L[i - 1]
     return L
 
-print insertSort(TL)
 
 def mergeSort(L):
     def merge(L1, L2):
@@ -48,7 +46,6 @@ def mergeSort(L):
         Queue.append(merge(Queue.pop(0), Queue.pop(0)))
     return Queue[0]
 
-print mergeSort(TL)
 
 def quickSort1(L):
     if len(L) < 2:
@@ -63,7 +60,6 @@ def quickSort1(L):
             big.append(i)
     return quickSort1(small) + [pivot] + quickSort1(big)
             
-print quickSort1(TL)
 
 def quickSort2(L):
     if len(L) < 2:
@@ -86,7 +82,46 @@ def quickSort2(L):
                 big.append(i)
             else:
                 small.append(i)
-        Stack.extend([small, pivot, big])
+        Stack = [small, pivot, big] + Stack
     return SL
-print quickSort2(TL)        
-        
+
+def partition(L, s, e):
+    pivot = L[e]
+    i = s - 1
+    for j in range(s, e):
+        if L[j] < pivot:
+            i += 1
+            L[i], L[j] = L[j], L[i]
+    
+    L[e], L[i+1] = L[i+1], L[e]
+    return i+1
+    
+def quickSort3(L, p, r):
+    if p < r:
+        q = partition(L, p, r)
+        quickSort3(L, p, q - 1)
+        quickSort3(L, q + 1, r)
+    return L
+
+def quickSort4(L):
+    s = 0
+    e = len(L) - 1
+    Stack = [(s,e)]
+    while Stack != []:
+        (s,e) = Stack.pop(0)
+        p = partition(L,s,e)
+        if p + 1 < e:
+            Stack.insert(0, (p + 1, e))
+        if s < p - 1:
+            Stack.insert(0, (s, p - 1))
+    return L
+    
+    
+
+print bubbleSort(list(TL))
+print insertSort(list(TL))
+print mergeSort(TL)
+print quickSort1(TL)
+print quickSort2(TL)                
+print quickSort3(list(TL), 0, len(TL)-1)
+print quickSort4(list(TL))
