@@ -116,8 +116,24 @@ def quickSort4(L):
             Stack.insert(0, (s, p - 1))
     return L
     
-    
 
+def count_sort(A):
+    k = max(A)
+    C = [0] * (k + 1)
+    B = [None] * len(A)
+    for a in A:
+        C[a] += 1
+    
+    i = 0
+    for j in xrange(k + 1):
+        if C[j] != 0:
+            for _c in xrange(C[j]):
+                B[i] = j
+                i += 1
+
+    return B
+
+print count_sort([1,5,3,3,2,6,99,7])
 print bubbleSort(list(TL))
 print insertSort(list(TL))
 print mergeSort(TL)
