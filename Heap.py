@@ -1,227 +1,116 @@
-'''
-Created on 2013-6-8
+def parent(i):
+    return i // 2
 
-@author: Brilliant
-'''
-class heap(object):
-    def __init__(self, A):
-        A.insert( 0, None)
-        self.List=A
-        self.length=len(A)-1
-        self.heap_len=len(A)-1
-    def getList(self):
-        if self.length==0:
-            return None
-        return self.List[1:]
-    def getHeap(self):
-        if self.heap_len==0:
-            return None
-        return self.List[1:self.heap_len+1 ]
-    def setList(self, A):
-        self.__init__(A)
-    def left(self, i):
-        return 2*i
-    def right(self, i):
-        return 2*i+ 1
-    def parent(self, i):
-        return i// 2
-   
-class minHeap(heap):
-    def min_heapify(self, i):
-        if i<= 0:
-            return False
-       
-        l= self.left(i)
-        r= self.right(i)
-       
-        if l<= self.heap_len and self.List[i]>self.List[l]:
-            smallest=l
+def left(i):
+    return i * 2
+
+def right(i):
+    return i * 2 + 1
+
+def max_heapify1(Heap, i):
+    heap_len = Heap[0]
+    l = left(i)
+    r = right(i)
+    
+    if l <= heap_len and Heap[i] <= Heap[l]:
+        largest = l
+    else:
+        largest = i
+        
+    if r <= heap_len and Heap[largest] <= Heap[r]:
+        largest = r
+        
+    if largest != i:
+        Heap[i], Heap[largest] = Heap[largest], Heap[i]
+        max_heapify1(Heap, largest)
+        
+def max_heapify2(Heap, i):
+    heap_len = Heap[0]
+    
+    while i < heap_len:
+        r = right(i)
+        l = left(i)
+        
+        if l <= heap_len and Heap[i] <= Heap[l]:
+            largest = l
         else:
-            smallest=i
-           
-        if r<= self.heap_len and self.List[r]<self.List[smallest]:
-            smallest=r
-           
-        if smallest==i:
-            return True
-        else:
-            tmp= self.List[i]
-            self.List[i]=self .List[smallest]
-            self.List[smallest]=tmp
-            self.min_heapify(smallest)
-           
-    def build_min_heap(self):
-        if self.heap_len==0:
-            return None
-        i= self.heap_len//2
-       
-        while i>= 1:
-            self.min_heapify(i)
-            i-= 1
-           
-    def sort(self):
-        if self.heap_len <= 1:
-            return
-        mini = self.List[1]
-        self.List[1 ]=self.List[ self.heap_len]
-        self.List[self.heap_len]=mini
-        self.heap_len-=1
-        self.min_heapify(1 )
-        self.sort()
-       
-class maxHeap(heap):
-    def max_heapify(self, i):
-        if i <= 0:
-            return False
-        l= self.left(i)
-        r= self.right(i)
-        if l <= self.heap_len and self.List[l] >= self.List[i]:
-            largest=l
-        else:
-            largest=i
-           
-        if r <= self.heap_len and self.List[r] >= self.List[largest]:
-            largest=r
-           
+            largest = i
+            
+        if r <= heap_len and Heap[largest] <= Heap[r]:
+            largest = r
+            
         if largest == i:
-            return True
-        else:
-            tmp= self.List[largest]
-            self.List[largest]=self .List[i]
-            self.List[i]=tmp
-            return self.max_heapify(largest)
+            break
+        
+        Heap[i], Heap[largest] = Heap[largest], Heap[i]
+        i = largest
+        
+def build_max_heap(L):
+    Heap = list(L)
+    heap_len = len(Heap)
+    Heap.insert(0, heap_len)
+    
+    for i in range(heap_len // 2, 0, -1):
+        max_heapify2(Heap, i)
+        
+    return Heap
 
-    def build_max_heap(self):
-        if self.heap_len==0:
-            return None
-       
-        i= self.heap_len//2
-        while i >= 1:
-            self.max_heapify(i)
-            i-= 1
-   
-    def sort(self):
-        if self.heap_len<=1:
-            return
-       
-        largest = self.List[1]
-        self.List[1 ]=self.List[ self.heap_len]
-        self.List[self.heap_len]=largest
-        self.heap_len-=1
-        self.max_heapify(1 )
-        self.sort()
+def heap_sort(L):
+    Heap = build_max_heap(L)
+    
+    while Heap[0] >= 2:
+        Heap[1], Heap[Heap[0]] = Heap[Heap[0]], Heap[1]
+        Heap[0] -= 1
+        max_heapify2(Heap, 1)
+    return Heap[1:]
 
+#Priority Queue
+def heap_maximum(Heap):
+    return Heap[1]
 
-class minPriorityQueue(minHeap):
-    def heap_minimum(self):
-        return self.List[1]
-   
-    def heap_extract_min(self):
-        if self.heap_len<1:
-            return None
-       
-        Result= self.List[1]
-       
-        self.List[1 ]=self.List[ self.heap_len]
-        self.List[self.heap_len]=float( "+infinity")
-        self.heap_len-=1
-        self.min_heapify(1 )
-        return Result
-   
-    def decrease_key(self, i, k):
-        if i<= 0:
-            return False
-        if self.List[i]>k:
-            return False
-       
-        self.List[i]=k
-        while i> 1 and self.List[self .parent(i)]>self.List[i]:
-            tmp= self.List[i]
-            self.List[i]=self .List[self.parent(i)]
-            self.List[self .parent(i)]=tmp
-            i= self.parent(i)
-           
-        return True
-       
-    def insert(self, x):
-        self.heap_len+=1
-        self.List[self.heap_len]=float( "+infinity")
-        self.decrease_key( self.heap_len, x)
+def heap_extract_max(Heap):
+    if Heap[0] < 1:
+        return 
+    Max = Heap[1]
+    Heap[1], Heap[Heap[0]] = Heap[Heap[0]], Heap[1]
+    Heap[0] -= 1
+    max_heapify2(Heap, 1)
+    return Max
 
-class maxPriorityQueue(maxHeap):
-    def heap_maximum(self):
-        return self.List[1]
-    def heap_extract_max(self):
-        if self.heap_len < 1:
-            return None
-       
-        Result= self.List[1]
-       
-        self.List[1 ]=self.List[ self.heap_len]
-        self.List[self.heap_len]=float( "-infinity")
-        self.heap_len-=1
-        self.max_heapify(1 )
-        return Result
-    def increase_key(self, i, k):
-        if i<= 0:
-            return False
-        if k< self.List[i]:
-            return False
-       
-        self.List[i]=k
-        while i> 1 and self.List[self .parent(i)]<self.List[i]:
-            tmp= self.List[i]
-            self.List[i]=self .List[self.parent(i)]
-            self.List[self .parent(i)]=tmp
-            i= self.parent(i)
-        return True
-       
-        self.max_heapify(i)
-    def insert(self, x):
-        self.heap_len+=1
-        self.List[self.heap_len]=float( "-infinity")
-        self.increase_key(self.heap_len, x)
+def heap_increase_key(Heap, i, key):
+    if Heap[i] > key:
+        return False
+    
+    Heap[i] = key
+    while i > 1 and Heap[parent(i)] < Heap[i]:
+        p = parent(i)
+        Heap[i], Heap[p] = Heap[p], Heap[i]
+        i = p
 
+    return True
 
-def test():
-    print "========================================="
-    A=minHeap([5,4,3,2,1])
-    A.build_min_heap()
-    A.sort()
-    print A.getList()
-    A=maxHeap([1,2,3,4,5])
-    A.build_max_heap()
-    A.sort()
-    print A.getList()
-
-    A=minHeap([5])
-    A.build_min_heap()
-    A.sort()
-    print A.getList()
-    A=maxHeap([1])
-    A.build_max_heap()
-    A.sort()
-    print A.getList()
-
-    A=minHeap([])
-    A.build_min_heap()
-    A.sort()
-    print A.getList()
-    A=maxHeap([])
-    A.build_max_heap()
-    A.sort()
-    print A.getList()   
-   
-    A=maxPriorityQueue([ 1, 3, 4, 5, 6, 7])
-    A.build_max_heap()
-    print A.getList()
-    A.increase_key(5, 9)
-    print A.getList()
-    print A.heap_extract_max()
-    print A.getList()
-    print A.List
-    print "========================================="
-   
-
-test()
-  
+def max_heap_insert1(Heap, key):
+    Heap[0] += 1
+    if Heap[0] > len(Heap) - 1:
+        Heap.append(float('-inf'))
+    else:
+        Heap[Heap[0]] = float('-inf')
+    heap_increase_key(Heap, Heap[0], key)
+    
+def max_heap_insert2(Heap, key):
+    Heap[0] += 1
+    if Heap[0] > len(Heap) - 1:
+        Heap.append(key)
+    else:
+        Heap[Heap[0]] = key
+    i = Heap[0]
+    while i > 1 and Heap[parent(i)] < Heap[i]:
+        p = parent(i)
+        Heap[i], Heap[p] = Heap[p], Heap[i]
+        i = p
+        
+def max_heap_delete(Heap, i):
+    Heap[i] = float('-inf')
+    max_heapify2(Heap, i)
+    Heap[0] -= 1
+    
