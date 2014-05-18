@@ -70,11 +70,11 @@ for l in f:
         
     basins[0][0][2]="a"
     CaseNo += 1
-    print "Case #%d:" % (CaseNo)
+    print( "Case #%d:" % (CaseNo))
     generateBasinRelationship(H,W, basins)    
     for h in range(H):
         for w in range(W):
-            print basins[h][w][2],
+            print( basins[h][w][2], end = ' ')
         print
     print
         

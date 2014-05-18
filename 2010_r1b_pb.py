@@ -60,7 +60,7 @@ for l in f:
         
     res = solve(N,K,B,T, Cs)
     CaseId += 1
-    print "Case #%d: %s" % (CaseId, res)
+    print( "Case #%d: %s" % (CaseId, res))
     if Cases == CaseId:
         break
 f.close()

@@ -7,11 +7,11 @@ def solve2(D, I, m, data):
     n = len(data)
     tab = [0] * 256
     otab = [0] * 256
-    for i in xrange(n):
+    for i in range(n):
         otab, tab = tab, otab
-        for j in xrange(256):
+        for j in range(256):
             cur = otab[j] + D
-            for k in xrange(256):
+            for k in range(256):
                 new = otab[k] + abs(data[i] - j)
                 if k != j:
                     if m == 0:
@@ -40,9 +40,9 @@ for l in f:
     res2 = solve2(D,I,M,An)
     CaseId += 1
     
-    print "Case #%d: %d" % (CaseId, res2)
+    print( "Case #%d: %d" % (CaseId, res2))
     if Cases == CaseId:
         break
 f.close()
-print time.time()-t1    
+print( time.time()-t1)    
         

@@ -106,7 +106,7 @@ def process():
         res3 = solve3(Strs)
         CaseId += 1
         Output = "Case #%d: %s" % (CaseId, res3)
-        print Output
+        print( Output)
         fo.write(Output+'\n')
         if Cases == CaseId:
             break

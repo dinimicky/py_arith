@@ -21,9 +21,9 @@ def Squares(Bark):
         for _c in r:
             squares[-1].append(0)
 
-    for rid in xrange(Rows):
+    for rid in range(Rows):
         r = Bark[rid]
-        for cid in xrange(len(r)):
+        for cid in range(len(r)):
             if rid == 0 and Bark[rid][cid] != 0:
                 squares[rid][cid]= 1
                 continue
@@ -54,8 +54,8 @@ def checkSquares(max_size, Squares, s_rid, s_cid):
 
 def getLargestSquares(squares):
     sizes = {}
-    for rid in xrange(len(squares)):
-        for cid in xrange(len(squares[rid])):
+    for rid in range(len(squares)):
+        for cid in range(len(squares[rid])):
             sz = squares[rid][cid]
             if sz not in sizes:
                 sizes[sz] = [[rid,cid]]
@@ -76,14 +76,14 @@ def getLargestSquares(squares):
         
 def updateRows(size, squares, rows):
     for rid, cid in squares:
-        for r in xrange(rid-size+1, rid+1):
-            for c in xrange(cid-size+1, cid+1):
+        for r in range(rid-size+1, rid+1):
+            for c in range(cid-size+1, cid+1):
                 rows[r][c]=0
 #    printRows(rows)            
     return rows        
 def printRows(rows):
     for r in rows:
-        print r
+        print(r)
                                        
 f = open('C-large-practice.in')
 first_line = f.readline()
@@ -120,10 +120,10 @@ for l in f:
         updateRows(s,sqs, rows)
         res.append([s, len(sqs)])
 
-    print 'Case #%d: %d' % (CaseNo, len(res))
+    print('Case #%d: %d' % (CaseNo, len(res)))
     
     for sz, num in res:
-        print sz,num
+        print(sz,num)
     if CaseNo==Cases:
         break
 

@@ -89,7 +89,7 @@ class Shudu(object):
     def scanSDLOnce(self):
         changeFlag = False
         sdListRightOrNot = True
-        for i in xrange(81):
+        for i in range(81):
             tmp = self.sdList[i]
             if 0 == tmp:
                 res = self.exclusion(i)
@@ -126,7 +126,7 @@ class Shudu(object):
             minSet = self.defaultRange
             pos = -1
             #do assumption
-            for i in xrange(81):
+            for i in range(81):
                 if 0 == self.sdList[i]:
                     tmp = self.exclusion(i)
                     if 0 == len(tmp):
@@ -158,9 +158,9 @@ def evaluateRunTime():
     global SDStr
     from timeit import Timer
     for SDL in SDStr:     
-        print SDL
+        print( SDL)
         t1 = Timer("print Shudu(\"%s\").scanSDL() == 0" % SDL, "from __main__ import Shudu")
-        print sum(t1.repeat(10, 1))/10
+        print( sum(t1.repeat(10, 1))/10)
     
 if __name__ == '__main__' :
     evaluatePerformance()     

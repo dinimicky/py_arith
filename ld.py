@@ -43,14 +43,14 @@ def ld_wf(strS, strT):
     
     d = [[float('-infinity') for j in range(lenS+1)] for i in range(lenT+1)]
             
-    for i in xrange(lenS+1):
+    for i in range(lenS+1):
         d[0][i] = i
         
-    for j in xrange(lenT+1):
+    for j in range(lenT+1):
         d[j][0] = j
     
-    for j in xrange(1, lenT+1):
-        for i in xrange(1, lenS+1):
+    for j in range(1, lenT+1):
+        for i in range(1, lenS+1):
             cost = 0 if strS[i-1] == strT[j-1] else 1
             d[j][i] = min(d[j-1][i]+1, d[j][i-1]+1, d[j-1][i-1]+cost)
         
@@ -80,46 +80,46 @@ def distance(a,b):
 import time
 def CalTimeElapse(strS, strT):
     StartTime=time.clock()
-    print ld(strS, strT)
+    print( ld(strS, strT))
     EndTime=time.clock()
-    print "elaspe time:%f" % (EndTime-StartTime)
+    print( "elaspe time:%f" % (EndTime-StartTime))
     StartTime=time.clock()
-    print reverse_ld(strS, strT)
+    print( reverse_ld(strS, strT))
     EndTime=time.clock()
-    print "elaspe time:%f" % (EndTime-StartTime)         
+    print( "elaspe time:%f" % (EndTime-StartTime))         
 
 #CalTimeElapse("kittenabcd", "sit")
 #CalTimeElapse("kittenabcd", "sitnabcd")
 #CalTimeElapse("kittenabcddfdsa", "sitnabcddfs")
 
 if __name__ == '__main__' :
-    print reverse_ld("kitten", "sitting")
-    print ld("kitten", "sitting")
-    print ld_wf("kitten", "sitting")
-    print ld_wf("Sunday","Saturday")
-    print reverse_ld("kittenabcd", "sitnabcd")
-    print ld_wf("kittenabcd", "sitnabcd")
-    print distance("Sunday","Saturday")
-    print distance("kittenaf4wefifsdififadfefadasorgyeruifdafeawefadsfdgfgafeafefadfasdfdafdfafyuifhbcdab", 
-                   "sitnabcdabdafdafefeadafdfdasfefdfdasfewfewafdfdddddddddddddddddddadfeeasdfdasdfdafdafdasffa")
+    print( reverse_ld("kitten", "sitting"))
+    print( ld("kitten", "sitting"))
+    print( ld_wf("kitten", "sitting"))
+    print( ld_wf("Sunday","Saturday"))
+    print( reverse_ld("kittenabcd", "sitnabcd"))
+    print( ld_wf("kittenabcd", "sitnabcd"))
+    print( distance("Sunday","Saturday"))
+    print( distance("kittenaf4wefifsdififadfefadasorgyeruifdafeawefadsfdgfgafeafefadfasdfdafdfafyuifhbcdab", 
+                   "sitnabcdabdafdafefeadafdfdasfefdfdasfewfewafdfdddddddddddddddddddadfeeasdfdasdfdafdafdasffa"))
 
 
     
     from timeit import Timer
     t1 = Timer("ld_wf(\"kittenabcd\", \"sitnabcd\")", "from __main__ import ld_wf")
-    print sum(t1.repeat(10, 1))/10
+    print( sum(t1.repeat(10, 1))/10)
     t1 = Timer("ld_wf(\"kittenabcda\", \"sitnabcd\")", "from __main__ import ld_wf")
-    print sum(t1.repeat(10, 1))/10
+    print( sum(t1.repeat(10, 1))/10)
     t1 = Timer("ld_wf(\"kittenabcd\", \"sitnabcda\")", "from __main__ import ld_wf")
-    print sum(t1.repeat(10, 1))/10
+    print( sum(t1.repeat(10, 1))/10)
     t1 = Timer("ld_wf(\"kittenabcda\", \"sitnabcda\")", "from __main__ import ld_wf")
-    print sum(t1.repeat(10, 1))/10
+    print( sum(t1.repeat(10, 1))/10)
     t1 = Timer("ld_wf(\"kittenabcdab\", \"sitnabcda\")", "from __main__ import ld_wf")
-    print sum(t1.repeat(10, 1))/10
+    print( sum(t1.repeat(10, 1))/10)
     t1 = Timer("ld_wf(\"kittenabcda\", \"sitnabcdab\")", "from __main__ import ld_wf")
-    print sum(t1.repeat(10, 1))/10
+    print( sum(t1.repeat(10, 1))/10)
     t1 = Timer("ld_wf(\"kittenaf4wefifsdififadfefadasorgyeruifdafeawefadsfdgfgafeafefadfasdfdafdfafyuifhbcdab\", \"sitnabcdabdafdafefeadafdfdasfefdfdasfewfewafdfdddddddddddddddddddadfeeasdfdasdfdafdafdasffa\")", "from __main__ import ld_wf")
-    print sum(t1.repeat(100, 1))/100
+    print( sum(t1.repeat(100, 1))/100)
     t1 = Timer("distance(\"kittenaf4wefifsdififadfefadasorgyeruifdafeawefadsfdgfgafeafefadfasdfdafdfafyuifhbcdab\", \"sitnabcdabdafdafefeadafdfdasfefdfdasfewfewafdfdddddddddddddddddddadfeeasdfdasdfdafdafdasffa\")", "from __main__ import distance")
-    print sum(t1.repeat(100, 1))/100 
+    print( sum(t1.repeat(100, 1))/100) 
     

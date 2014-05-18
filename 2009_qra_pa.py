@@ -60,7 +60,7 @@ CaseNo = 0
 for line in f:
     CaseNo +=1
     Word = parseWord(line.strip())  
-    print 'Case #%d: %d' % (CaseNo, WordsCounter(Word, WDict, 0))
+    print( 'Case #%d: %d' % (CaseNo, WordsCounter(Word, WDict, 0)))
     
     
 

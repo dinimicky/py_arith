@@ -36,11 +36,11 @@ def process():
     CaseId = 0
      
     for l in fi:
-        [r, t] = [long(i) for i in l.split()]
+        [r, t] = [int(i) for i in l.split()]
         res = solve2(r, t)
         CaseId += 1
         Output = "Case #%d: %s" % (CaseId, res)
-        print Output
+        print(Output)
         fo.write(Output+'\n')
         if Cases == CaseId:
             break

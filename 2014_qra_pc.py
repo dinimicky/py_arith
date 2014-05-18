@@ -41,16 +41,16 @@ CaseId = 0
 for l in f:
     CaseId += 1
     data =[int(i) for i in l.split()]
-    print "Case #%d: " % CaseId
+    print( "Case #%d: " % CaseId)
     Res  = solve(*data)
     if None == Res:
-        print "Impossible" 
+        print( "Impossible") 
     else:
         if type(Res)==type([]):
             Res[0][0]="c"
         for row in Res:
             for c in row:
-                print c,
+                print( c, end = ' ')
             print
     if Cases == CaseId:
         break

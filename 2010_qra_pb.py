@@ -12,4 +12,4 @@ for line in fp:
     words = line.split()
     words.reverse()
     CaseNum += 1
-    print 'Case #%d: %s' % (CaseNum, ' '.join(words))
+    print( 'Case #%d: %s' % (CaseNum, ' '.join(words)))

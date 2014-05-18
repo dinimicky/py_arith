@@ -39,7 +39,7 @@ class BinarySearchTree(object):
     def __inorder_tree_walk(self, node):
         if node!= None:
             self.__inorder_tree_walk(node.ltree)
-            print node.key
+            print( node.key)
             self.__inorder_tree_walk(node.rtree)
   
     def tree_search(self, key):
@@ -106,8 +106,8 @@ def test():
     for i in [6,7,1,2,5,4.5]:
         tree.tree_insert(Node(i))
     tree.inorder_tree_walk()
-    print tree.tree_search( 1).key
-    print tree.tree_search_closest( 4.9)
+    print( tree.tree_search( 1).key)
+    print( tree.tree_search_closest( 4.9))
   
   
 

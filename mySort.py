@@ -69,7 +69,7 @@ def quickSort2(L):
     SL = []
     while Stack != []:
         e = Stack.pop(0)
-        if type(e) != types.ListType:
+        if isinstance(e, list):
             SL.append(e)
             continue
         if e == []:
@@ -125,19 +125,19 @@ def count_sort(A):
         C[a] += 1
     
     i = 0
-    for j in xrange(k + 1):
+    for j in range(k + 1):
         if C[j] != 0:
-            for _c in xrange(C[j]):
+            for _c in range(C[j]):
                 B[i] = j
                 i += 1
 
     return B
 
-print count_sort([1,5,3,3,2,6,99,7])
-print bubbleSort(list(TL))
-print insertSort(list(TL))
-print mergeSort(TL)
-print quickSort1(TL)
-print quickSort2(TL)                
-print quickSort3(list(TL), 0, len(TL)-1)
-print quickSort4(list(TL))
+# print count_sort([1,5,3,3,2,6,99,7])
+# print bubbleSort(list(TL))
+# print insertSort(list(TL))
+# print mergeSort(TL)
+# print quickSort1(TL)
+# print quickSort2(TL)                
+# print quickSort3(list(TL), 0, len(TL)-1)
+# print quickSort4(list(TL))

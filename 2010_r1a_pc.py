@@ -58,8 +58,8 @@ def WinAB(a, b):
 def solve(A1,A2,B1,B2):
     counter = 0
     cache = []
-    for i in xrange(A1,A2+1):
-        for j in xrange(B1, B2+1):
+    for i in range(A1,A2+1):
+        for j in range(B1, B2+1):
             if (max(i,j), min(i,j)) in cache:
                 counter +=1
                 continue
@@ -69,8 +69,8 @@ def solve(A1,A2,B1,B2):
     return counter     
 def solve2(A1,A2,B1,B2):
     counter = 0
-    for i in xrange(A1,A2+1):
-        for j in xrange(B1, B2+1):
+    for i in range(A1,A2+1):
+        for j in range(B1, B2+1):
             if win(i,j):
                 counter+=1
     return counter              
@@ -85,7 +85,7 @@ t1=time.time()
 for l in f:
     data = [int(i) for i in l.split()]
     CaseId+=1
-    print "Case #%d: %d" % (CaseId, solve3(*data))
+    print( "Case #%d: %d" % (CaseId, solve3(*data)))
     if Cases == CaseId:
         break
 f.close()

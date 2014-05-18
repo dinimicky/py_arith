@@ -60,5 +60,5 @@ def getQueens(Queens, row):
     return          
 
 getQueens([], 0)
-print len(QueensList)
-print QueensList
+print( len(QueensList))
+print( QueensList)

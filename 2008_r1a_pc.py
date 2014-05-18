@@ -34,4 +34,4 @@ def solve(n):
 CaseItem=0
 for line in fp:
     CaseItem += 1
-    print 'Case #%d: %03d' % (CaseItem, (solve(int(line))+999)%1000)
+    print( 'Case #%d: %03d' % (CaseItem, (solve(int(line))+999)%1000))

@@ -17,7 +17,7 @@ def checkX(CF, X):
     return False
 
 def initX(Types):
-    return {i:0 for i in xrange(1,Types+1)}
+    return {i:0 for i in range(1,Types+1)}
             
 def checkXModification(PreCFs, X):
     for CF in PreCFs:
@@ -26,7 +26,7 @@ def checkXModification(PreCFs, X):
     return True
 
 def tryX(CustomersFlavors, X):
-    for i in xrange(len(CustomersFlavors)):
+    for i in range(len(CustomersFlavors)):
         CF = CustomersFlavors[i]
         if checkX(CF,X):
             continue
@@ -65,7 +65,7 @@ for line in fp:
         OneCustomerFlavor = [int(i) for i in line.split()]
         Ts = []
         Tm = None
-        for i in xrange(OneCustomerFlavor[0]):
+        for i in range(OneCustomerFlavor[0]):
             T = OneCustomerFlavor[i*2+1]
             M = OneCustomerFlavor[i*2+2]
             if 1==M:
@@ -83,12 +83,12 @@ for line in fp:
             Res2 = tryX(CustomersFlavors, initX(Types))
             def printRes(Res):
                 if Res==False: 
-                    print Str % (CaseItem, 'IMPOSSIBLE')
+                    print( Str % (CaseItem, 'IMPOSSIBLE'))
                 else:
                     ResStr=''
-                    for i in xrange(1,Types+1):
+                    for i in range(1,Types+1):
                         ResStr +=' %d' % Res[i]
-                    print Str % (CaseItem, ResStr)
+                    print( Str % (CaseItem, ResStr))
             printRes(Res2)
             CustomersFlavors=[]
 

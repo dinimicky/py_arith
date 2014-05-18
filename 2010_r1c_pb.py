@@ -25,4 +25,4 @@ CaseNo = 0
 for l in f:
     CaseNo += 1
     [L,P,C]=[int(i)for i in l.split()]
-    print "Case #%d: %d" % (CaseNo, CounterWorst(L,P,C))
+    print( "Case #%d: %d" % (CaseNo, CounterWorst(L,P,C)))

@@ -35,36 +35,36 @@ def checkValid(s1, s2):
                 res = 2
             else:
                 return 0
+    
+    if res == 2 and s1[0] * (len(s1)+len(s2)) == s1+s2:
+        return 3
     return res
 
 import math
+from itertools import combinations
 def solve2(Strs):
-    res = []
-    for s1, s2 in permutations(Strs, 2):
-        if checkValid(s1, s2) == 2:
-            res.append((s1, s2))
+    Strs = {i:v for i, v in enumerate(Strs)}
+    res3 = {}
+    for i, j in combinations(Strs, 2):
+        if checkValid(Strs[i], Strs[j]) == 3:
+            c = Strs[i][0]
+            if c not in res3:
+                res3[c] = [i, j]
+            else:
+                if i not in res3[c]:
+                    res3[c].append(i)
+                if j not in res3[c]:
+                    res3[c].append(j)
     
-    if res == []:
-        return math.factorial(len(Strs))
-    
-    NStrs = [list(Strs)]
-    for s1, s2 in res:
-        for strs in NStrs:
-            if s1 in NStrs and s2 in NStrs:
-                NStrs.remove(s1)
-                NStrs.remove(s2)
-                NStrs.append(s1+s2)
-                continue
-            if s1 not in NStrs:
-                NStrs
-            
-    return sum(total)
-        
-    
+    for indexes in res3.itervalues():
+        for i in indexes:
+            del Strs[i]
+    res = 0
+    return res % 1000000007
 
     
 
-# print solve2([compress(ss) for ss in ["aa", "aa", "bcc", "cc"]])
+# print solve2(["aa", "aa", "bcc", "cc"])
         
 def solve(Strs):
     res = 0
@@ -76,21 +76,22 @@ def solve(Strs):
             res +=1
     return res % 1000000007
 
-# fn="C:/Users/ezonghu/Downloads/B-small-practice"
-# fi=open(fn+'.in')
-# fo=open(fn+'.out','w')
-# Cases = int(fi.next())
-# CaseId = 0
-#     
-# for l in fi:
-#     N = int(l.strip())
-#     strs = fi.next().split()
-#     res = solve(strs)
-#     CaseId += 1
-#     Output = "Case #%d: %s" % (CaseId, res)
-#     print Output
-#     fo.write(Output+'\n')
-#     if Cases == CaseId:
-#         break
-# fi.close()
-# fo.close()
+fn="C:/Users/ezonghu/Downloads/B-small-practice"
+fi=open(fn+'.in')
+fo=open(fn+'.out','w')
+Cases = int(fi.next())
+CaseId = 0
+     
+for l in fi:
+    N = int(l.strip())
+    strs = fi.next().split()
+    res2 = solve2(strs)
+    res = solve(strs)
+    CaseId += 1
+    Output = "Case #%d: %s %s" % (CaseId, res, res2)
+    print Output
+    fo.write(Output+'\n')
+    if Cases == CaseId:
+        break
+fi.close()
+fo.close()

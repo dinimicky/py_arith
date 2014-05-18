@@ -51,7 +51,7 @@ for l in f:
             break        
     CaseId += 1
     
-    print "Case #%d: %d" % (CaseId, res)
+    print( "Case #%d: %d" % (CaseId, res))
     if Cases == CaseId:
         break
 f.close()

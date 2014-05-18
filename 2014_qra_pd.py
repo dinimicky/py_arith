@@ -72,7 +72,7 @@ for l in f:
         Line = 0
         
         y,z = solve(block_num, N_Blocks, K_Blocks) 
-        print "Case #%d: %d %d" % (CaseId,  y, z)
+        print( "Case #%d: %d %d" % (CaseId,  y, z))
         continue
  
          

@@ -22,7 +22,7 @@ for line in fp:
         continue
     
     CaseNum += 1
-    print 'Case #%d:' % CaseNum,
+    print( 'Case #%d:' % CaseNum, end = ' ')
     PressStr = ""
     for i in range(len(line[:-1])):
         if i > 0:
@@ -32,4 +32,4 @@ for line in fp:
                 PressStr += KeyMap[line[i]]
         else:
             PressStr += KeyMap[line[i]]
-    print PressStr
+    print( PressStr)

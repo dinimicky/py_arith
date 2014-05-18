@@ -53,7 +53,7 @@ def buildFullBinaryTree(node):
 
 def solve(N, edges):
     d={}
-    for i in xrange(1,N+1):
+    for i in range(1,N+1):
         d[i]=[]
         
     for p1, p2 in edges:
@@ -80,16 +80,16 @@ CaseId = 0
 for l in fi:
     N = int(l)
     Edges = []
-    for i in xrange(N-1):
+    for i in range(N-1):
         e = [int(i) for i in fi.next().split()]
         Edges.append(e)
     res = solve(N, Edges)
     CaseId += 1
     Output = "Case #%d: %s" % (CaseId, res)
-    print Output
+    print( Output)
     fo.write(Output+'\n')
     if Cases == CaseId:
         break
 fi.close()
 fo.close()
-print time.clock()-curr
+print( time.clock()-curr)

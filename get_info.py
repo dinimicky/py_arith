@@ -15,6 +15,6 @@ P=subprocess.Popen(["ssh  root@10.175.168.51 \"cmw-repository-list |grep ' Used'
 P.communicate("rootroot\n")
 
 def test(a):
-    print a
+    print( a)
     
 test(1,2)

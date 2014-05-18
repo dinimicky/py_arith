@@ -5,6 +5,7 @@ Created on 2014-4-16
 '''
 g_tab = {1:[1], 2:[1]}
 import operator
+from functools import reduce
 def c(n,k):
     if n == 0:
         return 1
@@ -55,7 +56,7 @@ for l in f:
     n = int(l)
     res = sum(solve(n)) % 100003
     CaseId += 1
-    print "Case #%d: %s" % (CaseId, res)
+    print( "Case #%d: %s" % (CaseId, res))
     if Cases == CaseId:
         break
 f.close()

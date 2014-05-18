@@ -14,13 +14,13 @@ def calculateSubStr(String, Target):
     if String == "":
         return False
     
-    for i in xrange(len(String)-len(Target)):
+    for i in range(len(String)-len(Target)):
         if String[i]==Target[0]:
             calculateSubStr(str(String[i+1:]),str(Target[1:]))
 
 def initTarget(Target=code_jam):
     Dict = {}
-    for i in xrange(len(Target)):
+    for i in range(len(Target)):
         Key = Target[i]
         if Key not in Dict:
             Dict[Key] = [i]
@@ -54,7 +54,7 @@ for l in f:
     CaseId += 1
 #     calculateSubStr(l, code_jam)
 #     print "Case #%d: %04d" % (CaseId, Counter)
-    print "Case #%d: %04d" % (CaseId, calculateStrQuantity(l.strip(), Dict) % 10000)
+    print("Case #%d: %04d" % (CaseId, calculateStrQuantity(l.strip(), Dict) % 10000))
       
     Counter=0
 

@@ -40,7 +40,7 @@ def test():
         G.append(checkLarger(g))
         B.append(checkLarger(b))
         
-    print sum(G)/len(G), sum(B)/len(B)
+    print( sum(G)/len(G), sum(B)/len(B))
 def process():
     fn="C:\Users\ezonghu\Downloads\C-small-practice"
     fi=open(fn+'.in')
@@ -55,7 +55,7 @@ def process():
         res = solve(N, a)
         CaseId += 1
         Output = "Case #%d: %s" % (CaseId, res)
-        print Output
+        print( Output)
         fo.write(Output+'\n')
         if Cases == CaseId:
             break

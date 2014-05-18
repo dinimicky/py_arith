@@ -39,6 +39,6 @@ L2=[]
 for i in range(len(S1)-1):
     getFastestResultFor2Line(L1, L2, C1, C2, S1, S2, T12, T21, i)
     
-print C1, C2
-print L1, L2
-print sum(S2)
+print( C1, C2)
+print( L1, L2)
+print( sum(S2))

@@ -38,7 +38,7 @@ for l in f:
     Line += 1
     if Line == 10:
         CaseId += 1
-        print "Case #%d:" % (CaseId), solve(first_matrix[first_row], second_matrix[second_row])
+        print( "Case #%d:" % (CaseId), solve(first_matrix[first_row], second_matrix[second_row]))
         
         Line = 0
         first_matrix = []

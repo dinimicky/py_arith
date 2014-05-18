@@ -28,18 +28,18 @@ SDStr =  ["005000600080701040700060003090205060008040900060109080500090002040308
           "600000803040700000000000000000504070300200000106000000020000050000080600000010000"]                 
 class Shudu(object):
     defaultRange = set(range(1,10))
-    defaultPositions = [(i % 9, i //9, i % 9 // 3 + i//9//3*3)for i in xrange(81)]
-    defaultRows = [[i*9+j for j in xrange(9)]for i in xrange(9)]
-    defaultCols = [[i+j*9 for j in xrange(9)]for i in xrange(9)]
+    defaultPositions = [(i % 9, i //9, i % 9 // 3 + i//9//3*3)for i in range(81)]
+    defaultRows = [[i*9+j for j in range(9)]for i in range(9)]
+    defaultCols = [[i+j*9 for j in range(9)]for i in range(9)]
     
    
     def __init__(self, SDL):
         self.defaultAreas = []
-        for j in xrange(3):
-            for i in xrange(3):
+        for j in range(3):
+            for i in range(3):
                 tmp = []
-                for y in xrange(3):
-                    for x in xrange(3):
+                for y in range(3):
+                    for x in range(3):
                         tmp.append(i*3+x+ (j*3+y)*9)
                         
                 self.defaultAreas.append(tmp)
@@ -75,7 +75,7 @@ class Shudu(object):
     def scanSDLOnce(self):
         changeFlag = False
         sdListRightOrNot = True
-        for i in xrange(81):
+        for i in range(81):
             tmp = self.sdList[i]
             if 0 == tmp:
                 res = self.exclusion(i)
@@ -120,7 +120,7 @@ class Shudu(object):
             minSet = self.defaultRange
             pos = -1
             #do assumption
-            for i in xrange(81):
+            for i in range(81):
                 if 0 == self.sdList[i]:
                     tmp = self.exclusion(i)
                     if 0 == len(tmp):
@@ -162,7 +162,7 @@ def evaluatePerformance():
     t=Shudu(SDStr[1])
     t.scanSDL()
     for i in range(0,81,9):
-        print t.sdList[i:i+9]
+        print( t.sdList[i:i+9])
     
       
     cProfile.run("solve(\"%s\")" % SDStr[1])       
@@ -171,15 +171,15 @@ def evaluateRunTime():
     global SDStr
     from timeit import Timer
     for SDL in SDStr:     
-        print SDL
+        print( SDL)
         t1 = Timer("Shudu(\"%s\").scanSDL()" % SDL, "from __main__ import Shudu")
-        print sum(t1.repeat(10, 1))/10
-    print "=================================="
+        print( sum(t1.repeat(10, 1))/10)
+    print( "==================================")
     for SDL in SDStr:
         SDL.replace("0", ".")
-        print SDL
+        print( SDL)
         t1 = Timer("solve(\"%s\")" % SDL, "from sudoku import solve")
-        print sum(t1.repeat(10, 1))/10
+        print( sum(t1.repeat(10, 1))/10)
     
 if __name__ == '__main__' :
     evaluatePerformance()

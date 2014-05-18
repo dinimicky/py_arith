@@ -7,7 +7,7 @@ Created on 2014-3-19
 def CountCross(lines):
     total = len(lines)
     Counter = 0
-    for i in xrange(total-1):
+    for i in range(total-1):
         [CurrL, CurrR] = lines[i]
         for [NextL, NextR] in lines[i+1:]:
             if CurrL<NextL and CurrR>NextR:
@@ -30,5 +30,5 @@ for s in f:
         lineNum-=1
         if lineNum==0:
             break
-    print "Case #%d: %d" % (CaseId, CountCross(lines))
+    print( "Case #%d: %d" % (CaseId, CountCross(lines)))
 f.close()

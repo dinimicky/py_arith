@@ -25,7 +25,7 @@ CaseId = 0
 for l in f:
     CaseId += 1
     data =[float(i) for i in l.split()]
-    print "Case #%d: %s" % (CaseId, solve(*data))
+    print( "Case #%d: %s" % (CaseId, solve(*data)))
     if Cases == CaseId:
         break
 f.close()

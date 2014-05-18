@@ -28,7 +28,7 @@ def gravity(board):
                 tmp.append(e)
         tmp.reverse()
         
-        for r in xrange(len(tmp)):
+        for r in range(len(tmp)):
             newboard[col_len-1-r][c]=tmp[r]
             
         c+=1
@@ -38,8 +38,8 @@ def gravity(board):
 def printBoard(board):
     for r in board:
         for e in r:
-            print e,
-        print
+            print(e, end=' ')
+        print()
         
 def scanRow(board, K, Wins):
     for r in board:
@@ -141,7 +141,7 @@ for l in f:
     
     res = whoWin(board, K)
     CaseId += 1
-    print "Case #%d: %s" % (CaseId, res)
+    print( "Case #%d: %s" % (CaseId, res))
     if Cases == CaseId:
         break
 f.close()

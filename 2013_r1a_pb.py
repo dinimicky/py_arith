@@ -54,7 +54,7 @@ def solve(E,R,N,Vs):
     for v in Vs:
         NextCost = {}
         for e,c in CurrCost.iteritems():
-            for i in xrange(R-1,e+1):
+            for i in range(R-1,e+1):
                 NE = min(e-i+R, E)
                 if NE not in NextCost:
                     NextCost[NE] = c + i * v
@@ -65,7 +65,7 @@ def solve(E,R,N,Vs):
 
         
 def test():
-    print solve(5,1,5,[2,1,4,1,2])
+    print(solve(5,1,5,[2,1,4,1,2]))
 
 def process():
     fn="C:\Users\ezonghu\Downloads\B-large-practice"
@@ -82,7 +82,7 @@ def process():
         res2 = solve2(E,R,N,Vs)
         CaseId += 1
         Output = "Case #%d: %s" % (CaseId, res2)
-        print Output
+        print( Output)
         fo.write(Output+'\n')
         if Cases == CaseId:
             break

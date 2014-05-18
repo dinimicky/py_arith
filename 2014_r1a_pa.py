@@ -34,7 +34,7 @@ for l in fi:
     res = solve(L,A,B)
     CaseId += 1
     Output = "Case #%d: %s" % (CaseId, res)
-    print Output
+    print( Output)
     fo.write(Output+'\n')
     if Cases == CaseId:
         break

@@ -82,7 +82,7 @@ class quantum_port(object):
 
 
 def run_cmd(cmd):
-    print cmd
+    print( cmd)
     import subprocess
     proc = subprocess.Popen([cmd], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     return proc.communicate()
@@ -97,7 +97,7 @@ def create_port(name, mac, net, fun=None):
     if err == "":
         return quantum_port(res)
     else:
-        print err
+        print( err)
         return
 
 def nova_boot(image, flavor, zone, nics, name, fun=None):
@@ -116,7 +116,7 @@ def nova_boot(image, flavor, zone, nics, name, fun=None):
     if err == "":
         return res
     else:
-        print err
+        print( err)
         return
 
 def generate_macs(firstmac, number):
@@ -139,7 +139,7 @@ def generate_macs(firstmac, number):
 
 def main(fun=None):
     Options = parse_args()
-    print Options.__dict__
+    print( Options.__dict__)
     first_mac_list = Options.firstmac.split(',')
     num_list = Options.num.split(',')
     mac_list = []
@@ -149,32 +149,32 @@ def main(fun=None):
     net_list = Options.net.split(",")
     port_list = []
     for mac, net in zip(mac_list, net_list):
-        print "try to create port, mac:%s, net:%s" % (mac, net)
+        print( "try to create port, mac:%s, net:%s" % (mac, net))
         port = create_port(Options.name, mac, net, fun)
         if port is None:
-            print "create failure"
+            print( "create failure")
             import sys
             sys.exit(-1)
         else:
-            print "create sucess"
+            print( "create sucess")
             port_list.append(port)
 
     nics = []
     for port in port_list:
         nics.append(port.id)
 
-    print "try to boot %s" % Options.name
-    print nova_boot(Options.image, Options.flavor, Options.zone, nics, Options.name, fun)
+    print( "try to boot %s" % Options.name)
+    print( nova_boot(Options.image, Options.flavor, Options.zone, nics, Options.name, fun))
 
 
 
 def test():
     q = quantum_port(result)
-    print q.__dict__
-    print q.id
-    print generate_macs("00:02:B3:BC:FB:A1",100)
+    print(q.__dict__)
+    print( q.id)
+    print( generate_macs("00:02:B3:BC:FB:A1",100))
     def run_cmd(cmd):
-        print cmd
+        print( cmd)
     main(run_cmd)
 
 

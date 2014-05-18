@@ -31,4 +31,4 @@ for line in fp:
         Sum = 0
         for i,j in zip(Vector1, Vector2):
             Sum += i*j
-        print "Case #%d: %d" % (CaseItem, Sum)
+        print( "Case #%d: %d" % (CaseItem, Sum))
