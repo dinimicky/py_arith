@@ -67,6 +67,11 @@ def comb(n, r):
     
     return sum(comb(x, r - 1) for x in range(1, n))
 
+@lru_cache(maxsize=None)
+def perm(n, r):
+    if r == 1:
+        return n
+    return sum(perm(n - 1, r - 1) for _x in range(n))
 print(comb_with_replacement(100, 8)) 
 print(comb(100, 8))    
-    
+print(perm(100,8))
