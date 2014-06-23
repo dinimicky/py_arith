@@ -89,7 +89,7 @@ for l in fi:
     res = solve(strs)
     CaseId += 1
     Output = "Case #%d: %s %s" % (CaseId, res, res2)
-    print Output
+    print(Output)
     fo.write(Output+'\n')
     if Cases == CaseId:
         break
