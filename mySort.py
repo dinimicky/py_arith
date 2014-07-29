@@ -64,7 +64,6 @@ def quickSort1(L):
 def quickSort2(L):
     if len(L) < 2:
         return L
-    import types
     Stack = [L]
     SL = []
     while Stack != []:
