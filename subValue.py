@@ -21,9 +21,15 @@ import re
 
 p = re.compile('\$([a-zA-Z0-9_]+)\$')
 
-
+l = [ i.group(1) for i in p.finditer(TestString)]
 res = [ getattr(cfg, i.group(1)) for i in p.finditer(TestString)]
 
 
 print(p.sub('%s', TestString))
+print(p.sub('%s', TestString) % tuple(res))
+
+import importlib
+
+m = importlib.import_module("test_env")
+res = [getattr(m, i.group(1)) for i in p.finditer(TestString)]
 print(p.sub('%s', TestString) % tuple(res))
