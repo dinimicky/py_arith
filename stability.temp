@@ -1,0 +1,7 @@
+{sisNetconf, {"$OAM_IP$", 830, "expert", "expert"}}.
+{sisSftp, {"$OAM_IP$", 22, "root", "tre,14"}}.
+{mgcName, "mgc2_slot7"}.
+{localNode, "$LOCAL_NODE$"}.
+{remoteNode, [{server, {"$TRAF_IP$", 22, "root","mgcroot"}},
+                 {nodeName, "remote@10.170.9.123"},
+                 {srcPath, "/home/ewagyae/MGC_AUTO_ST/MGC_ST/src"}]}.
