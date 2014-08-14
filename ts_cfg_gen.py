@@ -20,7 +20,7 @@ It defines classes_and_methods
 import sys
 import re
 import importlib
-from os.path import basename
+from os import path
 
 from optparse import OptionParser
 
@@ -65,7 +65,10 @@ def main(argv=None):
     
     p = re.compile('\$([a-zA-Z0-9_]+)\$')
     
-    opts.envCfg = basename(opts.envCfg)
+    opts.envCfg = path.basename(opts.envCfg)
+    mpath = path.dirname(path.abspath(opts.envCfg))
+    if mpath not in sys.path:
+        sys.path.append(mpath)
     if opts.envCfg[-3:] == ".py":
         opts.envCfg = opts.envCfg[:-3]
 
