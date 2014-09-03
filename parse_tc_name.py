@@ -88,7 +88,8 @@ def parse_tc(path, before, after):
     return CaseRes
             
 def printRes(CaseRes):
-    for TC, Res in CaseRes.items():
+    for TC in sorted(CaseRes):
+        Res = CaseRes[TC]
         ResStr = TC
         for r in sorted(Res):
             ResStr += ";"+Res[r]
